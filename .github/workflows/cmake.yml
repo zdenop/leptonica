@@ -55,4 +55,11 @@ jobs:
     - name: Build
       # Build your program with the given configuration
       run: sudo cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target install
-  
+      
+    - name: Test leptonica
+        shell: cmd
+        run: |
+          echo "Testing leptonica..."
+          ls *
+          ls prog/*.png
+          ${{env.ILOC}}/bin/fileinfo prog/test-rgb.png
