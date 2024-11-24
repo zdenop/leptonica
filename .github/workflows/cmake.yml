@@ -58,7 +58,8 @@ jobs:
 
 
     - name: Test leptonica
+      if: runner.os == 'Linux'
       run: |
            echo "Testing leptonica..."
-           ls ${GITHUB_WORKSPACE}/prog/*.png
+           sudo ldconfig
            /usr/local/bin/fileinfo ${GITHUB_WORKSPACE}/prog/test-rgb.png
