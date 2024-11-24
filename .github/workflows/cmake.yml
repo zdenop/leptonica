@@ -61,4 +61,4 @@ jobs:
       run: |
            echo "Testing leptonica..."
            ls ${GITHUB_WORKSPACE}/prog/*.png
-           fileinfo prog/test-rgb.png
+           /usr/local/bin/fileinfo ${GITHUB_WORKSPACE}/prog/test-rgb.png
