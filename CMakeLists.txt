@@ -8,7 +8,7 @@
 #
 # ##############################################################################
 
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 cmake_policy(SET CMP0054 NEW)
 
 # In-source builds are disabled.
@@ -372,10 +372,15 @@ get_target_property(leptonica_OUTPUT_NAME leptonica OUTPUT_NAME)
 
 configure_file(lept.pc.cmake ${CMAKE_CURRENT_BINARY_DIR}/lept.pc.in @ONLY)
 # to resolve generator expression in OUTPUT_NAME
-file(
-  GENERATE
-  OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/lept.pc
-  INPUT ${CMAKE_CURRENT_BINARY_DIR}/lept.pc.in)
+if(WIN32)
+  file(GENERATE 
+    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/lept_$<CONFIG>.pc
+    INPUT ${CMAKE_CURRENT_BINARY_DIR}/lept.pc.in)
+else()
+  file(GENERATE
+    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/lept.pc
+    INPUT ${CMAKE_CURRENT_BINARY_DIR}/lept.pc.in)
+endif(WIN32)
 
 configure_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/cmake/templates/LeptonicaConfig-version.cmake.in
