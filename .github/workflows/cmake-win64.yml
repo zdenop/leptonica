@@ -158,6 +158,8 @@ jobs:
         shell: cmd
         run: |
           echo "Testing leptonica..."
+          ls *
+          ls prog/*.png
           ${{env.ILOC}}/bin/fileinfo prog/test-rgb.png
 
       - name: Remove not needed tools
